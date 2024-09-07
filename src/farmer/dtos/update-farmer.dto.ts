@@ -7,12 +7,15 @@ import {
   MaxLength,
   IsOptional,
 } from 'class-validator';
-import { Type } from 'class-transformer';
+import { Transform, Type } from 'class-transformer';
+import { IsValidDocument } from 'src/validators/document.validator';
 
 export class UpdateFarmerDto {
   @IsString()
   @IsNotEmpty()
   @Length(11, 14)
+  @Transform(({ value }) => value.replace(/[^\d]+/g, ''))
+  @IsValidDocument()
   @IsOptional()
   document: string;
 

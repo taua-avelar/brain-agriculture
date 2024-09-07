@@ -6,12 +6,15 @@ import {
   Length,
   MaxLength,
 } from 'class-validator';
-import { Type } from 'class-transformer';
+import { Transform, Type } from 'class-transformer';
+import { IsValidDocument } from 'src/validators/document.validator';
 
 export class CreateFarmerDto {
   @IsString()
   @IsNotEmpty()
   @Length(11, 14)
+  @Transform(({ value }) => value.replace(/[^\d]+/g, ''))
+  @IsValidDocument()
   document: string;
 
   @IsString()
