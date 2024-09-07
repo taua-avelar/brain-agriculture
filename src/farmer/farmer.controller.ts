@@ -18,6 +18,11 @@ export class FarmerController {
     this.farmerService.create(body);
   }
 
+  @Get('/dashboard')
+  getDashboardData() {
+    return this.farmerService.getDashboardData();
+  }
+
   @Get('/:id')
   findFarmer(@Param('id') id: string) {
     return this.farmerService.findOne(parseInt(id));
