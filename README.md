@@ -1,85 +1,173 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Projeto de Gerenciamento de Produtores Rurais
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Este projeto é um serviço de gerenciamento de produtores rurais, desenvolvido usando NestJS e TypeORM. O serviço permite criar, atualizar, excluir e consultar informações sobre produtores rurais, além de fornecer dados para um dashboard.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## Instalação
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### Pré-requisitos
 
-## Project setup
+Certifique-se de ter o Node.js instalado em sua máquina.
 
-```bash
-$ npm install
+### Clonando o Repositório
+
+Clone o repositório com o comando:
+```git clone git@github.com:taua-avelar/brain-agriculture.git```
+```cd brain-agriculture```
+
+### Instalando Dependências
+Instale as dependências do projeto com:
+
+```npm install```
+
+### Configuração do Ambiente
+Crie um arquivo .env na raiz do projeto e adicione as seguintes variáveis de ambiente:
+
+
+```
+PORT=xxxx
+DB_HOST=xxxxxx
+DB_PORT=xxxx
+DB_USERNAME=xxxxxxx
+DB_PASSWORD=xxxxxxxx
+DB_NAME=xxxxxx
 ```
 
-## Compile and run the project
 
-```bash
-# development
-$ npm run start
+## Executando o Serviço
+Para iniciar o serviço em modo de desenvolvimento, use:
+```npm run start:dev```
 
-# watch mode
-$ npm run start:dev
+Para iniciar o serviço em modo de produção, primeiro faça o build do projeto e depois inicie o serviço:
+```npm run build```
+```npm run start:prod```
 
-# production mode
-$ npm run start:prod
+### Executando Testes
+Para rodar todos os testes unitários, use:
+```npm test```
+
+Para rodar os testes em modo watch (observando alterações), use:
+```npm run test:watch```
+
+Para conferir a cobertura dos testes, use:
+```npm run test:cov```
+
+## Endpoints da API
+---
+### Encontrar um Produtor Rural por ID
+**GET** ```/farmer/:id```
+
+***Resposta:***
+```
+{
+  "id": 1
+  "document": "12345678901",
+  "name": "Nome do Produtor",
+  "farmName": "Nome da Fazenda",
+  "city": "Cidade",
+  "state": "SP",
+  "totalArea": 100.5,
+  "arableArea": 80.0,
+  "vegetationArea": 20.5,
+  "crops": ["café", "soja"]
+}
+```
+---
+### Criar um Novo Produtor Rural
+**POST** ```/farmer/new```
+Corpo da Requisição:
+```
+{
+  "document": "12345678901",
+  "name": "Nome do Produtor",
+  "farmName": "Nome da Fazenda",
+  "city": "Cidade",
+  "state": "SP",
+  "totalArea": 100.5,
+  "arableArea": 80.0,
+  "vegetationArea": 20.5,
+  "crops": ["café", "soja"]
+}
+```
+***Resposta:***
+```
+{
+  "id": 1
+  "document": "12345678901",
+  "name": "Nome do Produtor",
+  "farmName": "Nome da Fazenda",
+  "city": "Cidade",
+  "state": "SP",
+  "totalArea": 100.5,
+  "arableArea": 80.0,
+  "vegetationArea": 20.5,
+  "crops": ["café", "soja"]
+}
+```
+---
+### Atualizar um Produtor Rural
+**PATCH** ```/farmer/:id```
+Corpo da Requisição:
+```
+{
+  "name": "Nome Atualizado"
+}
+```
+***Resposta:***
+```
+{
+  "id": 1,
+  "document": "12345678901",
+  "name": "Nome Atualizado",
+  "farmName": "Nome da Fazenda",
+  "city": "Cidade",
+  "state": "SP",
+  "totalArea": 100.5,
+  "arableArea": 80.0,
+  "vegetationArea": 20.5,
+  "crops": ["café", "soja"]
+}
 ```
 
-## Run tests
+---
+### Remover um Produtor Rural
+**DELETE** ```/farmer/:id```
 
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+***Resposta:***
 ```
+{
+  "id": 1,
+  "document": "12345678901",
+  "name": "Nome do Produtor",
+  "farmName": "Nome da Fazenda",
+  "city": "Cidade",
+  "state": "SP",
+  "totalArea": 100.5,
+  "arableArea": 80.0,
+  "vegetationArea": 20.5,
+  "crops": ["café", "soja"]
+}
+```
+---
+### Obter Dados do Dashboard
+**GET** ```/farmer/dashboard```
 
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+***Resposta:***
+```
+{
+  "totalFarmsCount": 10,
+  "totalFarmsArea": 1000.0,
+  "farmsByState": [
+    { "state": "SP", "count": 5 },
+    { "state": "MG", "count": 3 }
+  ],
+  "farmsByCrops": [
+    { "crop": "café", "count": 6 },
+    { "crop": "soja", "count": 4 }
+  ],
+  "farmsByLandUse": {
+    "arableArea": 800.0,
+    "vegetationArea": 200.0
+  }
+}
+```
