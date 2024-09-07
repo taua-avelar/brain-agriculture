@@ -8,7 +8,7 @@ import {
   Min,
 } from 'class-validator';
 import { Transform, Type } from 'class-transformer';
-import { IsValidDocument } from 'src/validators/document.validator';
+import { IsValidDocument } from '../../validators/document.validator';
 
 export class CreateFarmerDto {
   @IsString()

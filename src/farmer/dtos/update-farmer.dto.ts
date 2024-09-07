@@ -9,7 +9,7 @@ import {
   Min,
 } from 'class-validator';
 import { Transform, Type } from 'class-transformer';
-import { IsValidDocument } from 'src/validators/document.validator';
+import { IsValidDocument } from '../../validators/document.validator';
 
 export class UpdateFarmerDto {
   @IsString()
@@ -18,56 +18,56 @@ export class UpdateFarmerDto {
   @Transform(({ value }) => value.replace(/[^\d]+/g, ''))
   @IsValidDocument()
   @IsOptional()
-  document: string;
+  document?: string;
 
   @IsString()
   @IsNotEmpty()
   @MaxLength(100)
   @IsOptional()
-  name: string;
+  name?: string;
 
   @IsString()
   @IsNotEmpty()
   @MaxLength(100)
   @IsOptional()
-  farmName: string;
+  farmName?: string;
 
   @IsString()
   @IsNotEmpty()
   @MaxLength(100)
   @IsOptional()
-  city: string;
+  city?: string;
 
   @IsString()
   @IsNotEmpty()
   @Length(2, 2)
   @IsOptional()
-  state: string;
+  state?: string;
 
   @IsNumber()
   @Type(() => Number)
   @IsNotEmpty()
   @IsOptional()
   @Min(0)
-  totalArea: number;
+  totalArea?: number;
 
   @IsNumber()
   @Type(() => Number)
   @IsNotEmpty()
   @IsOptional()
   @Min(0)
-  arableArea: number;
+  arableArea?: number;
 
   @IsNumber()
   @Type(() => Number)
   @IsNotEmpty()
   @IsOptional()
   @Min(0)
-  vegetationArea: number;
+  vegetationArea?: number;
 
   @IsArray()
   @IsString({ each: true })
   @IsNotEmpty()
   @IsOptional()
-  crops: string[];
+  crops?: string[];
 }
