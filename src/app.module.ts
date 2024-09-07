@@ -15,7 +15,7 @@ import { Farmer } from './farmer/farmer.entity';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       entities: [Farmer],
-      synchronize: false,
+      synchronize: true,
     }),
     FarmerModule,
   ],

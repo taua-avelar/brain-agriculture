@@ -75,7 +75,7 @@ export class FarmerService {
 
     const farmsByCrops = await this.repo
       .createQueryBuilder('farmer')
-      .select('UNNEST(farmer.crops) AS crop')
+      .select("UNNEST(string_to_array(farmer.crops, ',')) AS crop")
       .addSelect('COUNT(*)', 'count')
       .groupBy('crop')
       .getRawMany();
