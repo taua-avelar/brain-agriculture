@@ -5,6 +5,7 @@ import {
   IsArray,
   Length,
   MaxLength,
+  Min,
 } from 'class-validator';
 import { Transform, Type } from 'class-transformer';
 import { IsValidDocument } from 'src/validators/document.validator';
@@ -40,16 +41,19 @@ export class CreateFarmerDto {
   @IsNumber()
   @Type(() => Number)
   @IsNotEmpty()
+  @Min(0)
   totalArea: number;
 
   @IsNumber()
   @Type(() => Number)
   @IsNotEmpty()
+  @Min(0)
   arableArea: number;
 
   @IsNumber()
   @Type(() => Number)
   @IsNotEmpty()
+  @Min(0)
   vegetationArea: number;
 
   @IsArray()
