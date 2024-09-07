@@ -15,7 +15,7 @@ export class FarmerController {
   constructor(private farmerService: FarmerService) {}
   @Post('/new')
   createFarmer(@Body() body: CreateFarmerDto) {
-    this.farmerService.create(body);
+    return this.farmerService.create(body);
   }
 
   @Get('/dashboard')

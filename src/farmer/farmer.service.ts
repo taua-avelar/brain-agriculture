@@ -6,7 +6,7 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Farmer } from './farmer.entity';
-import { CreateFarmerDto, UpdateFarmerDto } from './dtos';
+import { CreateFarmerDto } from './dtos';
 
 @Injectable()
 export class FarmerService {
@@ -24,7 +24,14 @@ export class FarmerService {
     }
   }
 
-  create(body: CreateFarmerDto) {
+  async create(body: CreateFarmerDto) {
+    const existingFarmer = await this.repo.findOne({
+      where: { document: body.document },
+    });
+    if (existingFarmer) {
+      throw new BadRequestException('Documento já está cadastrado.');
+    }
+
     this.validateAreas(body.totalArea, body.arableArea, body.vegetationArea);
     const newFarmer = this.repo.create(body);
 
@@ -39,7 +46,7 @@ export class FarmerService {
     return this.repo.find({ where: { document } });
   }
 
-  async update(id: number, attrs: UpdateFarmerDto) {
+  async update(id: number, attrs: Partial<Farmer>) {
     const farmer = await this.findOne(id);
     if (!farmer) throw new NotFoundException('Usuario não encontrado');
     this.validateAreas(
