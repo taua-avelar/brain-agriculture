@@ -1,5 +1,8 @@
 # Projeto de Gerenciamento de Produtores Rurais
 
+URL da Aplicação: https://brain-agriculture-irqf.onrender.com
+A aplicação está sendo servida na nuvem através do serviço Render. Note que a primeira requisição pode demorar um pouco, pois o servidor pode estar em estado de hibernação para economizar recursos.
+
 Este projeto é um serviço de gerenciamento de produtores rurais, desenvolvido usando NestJS e TypeORM. O serviço permite criar, atualizar, excluir e consultar informações sobre produtores rurais, além de fornecer dados para um dashboard.
 
 
