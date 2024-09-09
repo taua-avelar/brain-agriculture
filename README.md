@@ -9,7 +9,7 @@ Este projeto é um serviço de gerenciamento de produtores rurais, desenvolvido 
 
 ### Pré-requisitos
 
-Certifique-se de ter o Node.js instalado em sua máquina.
+Certifique-se de ter o Node.js e postgres instalados em sua máquina.
 
 ### Clonando o Repositório
 
